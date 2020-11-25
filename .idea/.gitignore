@@ -6,3 +6,5 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+../UDP_server/cmake-build-debug
+../UDP_client/target
