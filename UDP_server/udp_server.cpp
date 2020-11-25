@@ -57,7 +57,7 @@ int udp_server::UdpServer::recive(char *msg, size_t max_size)
 int udp_server::UdpServer::send(const char *msg, size_t size)
 {
     socklen_t len = sizeof(client_addr);
-    return ::sendto(f_socket, (const char *)msg, strlen(msg), 0, (const struct sockaddr *) &client_addr, len);;
+    return ::sendto(f_socket, (const char *)msg, size, 0, (const struct sockaddr *) &client_addr, len);;
 }
 
 int udp_server::UdpServer::timed_recv(char *msg, size_t max_size, int max_wait_ms)

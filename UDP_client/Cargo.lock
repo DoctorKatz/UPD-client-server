@@ -148,6 +148,7 @@ dependencies = [
  "bincode",
  "byteorder",
  "crc32c",
+ "libc",
  "rand",
  "serde",
 ]

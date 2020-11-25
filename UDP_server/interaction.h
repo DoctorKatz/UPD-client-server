@@ -30,6 +30,7 @@ namespace udp_server {
         };
 
     public:
+#pragma pack(1)
         struct data_from_client {
             uint32_t    seq_number;
             uint32_t    seq_total;
@@ -37,8 +38,9 @@ namespace udp_server {
             byte        id[8];
             byte        data[MAX_DATA_SIZE];
         };
+#pragma pack(pop)
     public:
-        struct data_from_client package{};
+        //struct data_from_client package{};
         struct data_node        data{};
 
         bool    check_data_id();
@@ -98,7 +100,7 @@ namespace udp_server {
             ~FileSystem();
 
             int save_package(byte *data);
-            uint32_t crc32c(uint32_t crc, const unsigned char *buf, size_t len);
+            static uint32_t crc32c(uint32_t crc, const char *buf, size_t len);
             bool check_crc32c(uint32_t crc_input_file, uint32_t crc_output_file);
 
 

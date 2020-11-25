@@ -54,7 +54,7 @@ DataProcessor::data_from_client DataProcessor::presence_file( DataProcessor::dat
     PackageVector     OriginVector(new_data, new_data.seq_number);
     new_recieved_file.Origin = &OriginVector;
     rfiles.push_back(new_recieved_file);
-    return reinterpret_cast<const data_from_client &>(rfiles[0]);
+    return package;
 }
 
 
@@ -70,7 +70,7 @@ DataProcessor::FileSystem::~FileSystem() {
     file.close();
 }
 
-uint32_t DataProcessor::FileSystem::crc32c(uint32_t crc, const unsigned char *buf, size_t len)
+uint32_t DataProcessor::FileSystem::crc32c(uint32_t crc, const char *buf, size_t len)
 {
     int k;
 

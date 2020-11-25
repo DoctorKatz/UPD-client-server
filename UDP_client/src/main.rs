@@ -6,6 +6,7 @@ use serde::{Deserialize, Serialize};
 use std::io::Read;
 use byteorder::{BigEndian, WriteBytesExt, LittleEndian};
 use crc32c;
+use bincode;
 
 /*use std::io;
 
@@ -49,7 +50,7 @@ fn udp_client(addr: String,  ){
 }*/
 
 
-const MAX_DATA: usize = 15;
+const MAX_DATA: usize = 35;
 const ACK: u8 = 1;
 const PUT: u8 = 0; //TODO: check it in protocol
 
@@ -76,6 +77,14 @@ struct PackageData{
     id: [u8; 8],
     data:Vec<u8>
 }
+#[derive(Serialize, Deserialize, PartialEq, Debug)]
+struct RequestData{
+    seq_number: u32,
+    seq_total: u32,
+    i_type: u8,
+    id: [u8; 8],
+    data:u32
+}
 
 impl PackageData{
     pub fn new(seq_number: u32, seq_total: u32, i_type: u8, id: [u8; 8], data:Vec<u8>) -> Option<PackageData>{
@@ -87,18 +96,6 @@ impl PackageData{
             data
         })
     }
-
-    /*pub fn new_from_server(mut buffer: &[u8]) -> PackageData{
-        let mut package = PackageData {
-            seq_number:0,
-            seq_total:0,
-            i_type: 0,
-            id:[0,0,0,0,0,0,0,0],
-            data: vec![]
-        };
-        buffer.read(&mut package)?
-    }*/
-
 
     pub fn get_file(filename: String, id_arr: &[u8;8]) -> Vec<PackageData>{
         let mut contents = fs::read_to_string(filename)
@@ -178,9 +175,11 @@ impl PackageData{
 }
 
 fn main() {
+
     let id:[u8; 8] = [0,0,0,0,0,0,0,1];
     let file_crc = fs::read_to_string("test.txt").expect("Can't read");
-    let mut crc = crc32c::crc32c(file_crc.as_ref());
+    println!("CRC:{}", file_crc.len());
+    let mut crc = crc32c::crc32c("12345".as_bytes());
     println!("CRC:{}", crc);
 
     let file:Vec<PackageData> = PackageData::get_file("test.txt".to_string(), &id);
@@ -192,22 +191,26 @@ fn main() {
     socket.connect("127.0.0.1:8888").expect("Could not connect to server");
     loop {
         let mut input = "hello".to_string();
-        let mut buffer = [0u8; 48];
+        let mut buffer = [0u8; 40];
         //io::stdin().read_line(&mut input).expect("Failed to read from stdin");
         let bytes = bincode::serialize(&file[num]).unwrap();
         println!("{}", bytes[1]);
         socket.send(&bytes).expect("Failed to write to server");
 
         socket.recv_from(&mut buffer).expect("Could not read into buffer");
-        let mut package = PackageData {
-            seq_number:0,
-            seq_total:0,
-            i_type: 0,
-            id:[0,0,0,0,0,0,0,0],
-            data: vec![]
-        };
-        let data: PackageData = unsafe { mem::transmute(buffer) };
-        println!("Seq_number{}", data.seq_number);
+       /* let mut package = PackageData {
+            seq_number: buffer[0] as u32,
+            seq_total: (buffer[1] as u32) << 32,
+            i_type: (buffer[2] as u8) << 64 ,
+            id:[buffer[3],buffer[4],buffer[5], buffer[6], buffer[7], buffer[8], buffer[9], buffer[10]],
+            data: vec![0;MAX_DATA]
+         };*/
+        //let temp = buffer.to_vec();
+        //let s = str::from_utf8(temp).expect("sdsdsdsd");
+
+        let decoded: RequestData = bincode::deserialize(&buffer).unwrap();
+        print!("{}", decoded.seq_number);
+
         print!("{}", str::from_utf8(&buffer).expect("Could not write buffer as string"));
     }
 }
