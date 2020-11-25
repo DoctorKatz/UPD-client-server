@@ -5,7 +5,7 @@ use rand::Rng;
 use serde::{Deserialize, Serialize};
 use std::io::Read;
 use byteorder::{BigEndian, WriteBytesExt, LittleEndian};
-use crc32fast::Hasher;
+use crc32c;
 
 /*use std::io;
 
@@ -180,9 +180,8 @@ impl PackageData{
 fn main() {
     let id:[u8; 8] = [0,0,0,0,0,0,0,1];
     let file_crc = fs::read_to_string("test.txt").expect("Can't read");
-    let mut hasher = Hasher::new();
-    hasher.update(file_crc.as_ref());//TODO::crc
-    println!("CRC:{}", hasher.finalize());
+    let mut crc = crc32c::crc32c(file_crc.as_ref());
+    println!("CRC:{}", crc);
 
     let file:Vec<PackageData> = PackageData::get_file("test.txt".to_string(), &id);
     let mut rng = rand::thread_rng();
