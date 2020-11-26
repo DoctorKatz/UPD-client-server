@@ -51,8 +51,8 @@ fn udp_client(addr: String,  ){
 
 
 const MAX_DATA: usize = 35;
-const ACK: u8 = 1;
-const PUT: u8 = 0; //TODO: check it in protocol
+const ACK: u8 = 0;
+const PUT: u8 = 1; //TODO: check it in protocol
 
 fn read_struct<T, R: Read>(mut read: R) -> io::Result<T> {
     let num_bytes = ::std::mem::size_of::<T>();
@@ -184,12 +184,13 @@ fn main() {
 
     let file:Vec<PackageData> = PackageData::get_file("test.txt".to_string(), &id);
     let mut rng = rand::thread_rng();
-    let num = rng.gen_range(0, file.len());
+   // let num = rng.gen_range(0, file.len());
     file[num].get_seq_total();
 
     let socket = UdpSocket::bind("127.0.0.1:8000").expect("Could not bind client socket");
     socket.connect("127.0.0.1:8888").expect("Could not connect to server");
     loop {
+        let num = rng.gen_range(0, file.len());
         let mut input = "hello".to_string();
         let mut buffer = [0u8; 40];
         //io::stdin().read_line(&mut input).expect("Failed to read from stdin");
@@ -210,6 +211,7 @@ fn main() {
 
         let decoded: RequestData = bincode::deserialize(&buffer).unwrap();
         print!("{}", decoded.seq_number);
+        if
 
         print!("{}", str::from_utf8(&buffer).expect("Could not write buffer as string"));
     }

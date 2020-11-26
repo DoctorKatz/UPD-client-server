@@ -1,6 +1,7 @@
 #include <iostream>
 #include "udp_server.h"
 #include "interaction.h"
+#include "lib.h"
 
 using namespace std;
 
@@ -10,8 +11,8 @@ int main()
     std::string addr;
     int port;
     uint32_t crc = 0;
-    udp_server::DataProcessor::data_from_client ask_to_client;
-    std::ifstream in_stream("../test.txt");
+    udp_server::DataProcessor::data_from_client request_client;
+    /*std::ifstream in_stream("../test.txt");
 
     if(!in_stream.good())
     {
@@ -32,7 +33,7 @@ int main()
     uint32_t len = file_test.size() - 1;
     const char *test1 = "12345";
     crc = udp_server::DataProcessor::FileSystem::crc32c(0, test1, len);
-    std::cout << crc;
+    std::cout << crc;*/
 
     char msg[MAX_DATA_SIZE];
 
@@ -46,24 +47,22 @@ int main()
 
     //udp_server::UdpServer(addr, port);
     udp_server::UdpServer Server(8888);
-    cout << Server.get_port();
-    cout << "\n";
-    cout << Server.get_socket();
-    cout << "\n";
+    cout << Server.get_port() << endl;
+    cout << Server.get_socket() << endl;
 
-    Server.timed_recv(msg, MAX_DATA_SIZE, 10);
-   /* for (int i = 0; i < MAX_DATA_SIZE; i++) {
-        cout << msg[i];
-    }*/
-    udp_server::DataProcessor   Client_message;
+    udp_server::DataProcessor ClientMessages;
+    while(io::kbhit() != 1) { //push key for exit
+        Server.timed_recv(msg, MAX_DATA_SIZE, 1000);
+        request_client = ClientMessages.presence_file(
+                reinterpret_cast<const udp_server::DataProcessor::data_from_client &>(msg));
 
-    ask_to_client = Client_message.presence_file(reinterpret_cast<const udp_server::DataProcessor::data_from_client &>(msg));
-    char *temp = (char*)&ask_to_client;
-   //memcpy(temp, &ask_to_client, sizeof(udp_server::DataProcessor::data_from_client));
-    Server.send(temp, MAX_DATA_SIZE);
-    printf("Client : %s\n", msg);
+        Server.send((char *)&request_client, MAX_DATA_SIZE);
+        if (ClientMessages.m_ready_file){
+            ClientMessages.write_file();
+            cout << "File is write" << endl;
+        }
+    }
     //Server.send(msg, 100);
-
 }
 
 
