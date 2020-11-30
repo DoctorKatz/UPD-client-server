@@ -1,19 +1,20 @@
 //
 // Created by 79164 on 18.11.2020.
 //
-#include "interaction.h"
+#include "../inc/interaction.h"
 #include <string.h>
 #include <algorithm>
+#include <iostream>
 
 using namespace udp_server;
 
 DataProcessor::DataProcessor() {
     m_ready_file = false;
+
 };
 DataProcessor::~DataProcessor() = default;
 
 DataProcessor::data_from_client DataProcessor::presence_file(DataProcessor::data_from_client package) { //TODO: rename file
-    //data_node                       new_data;
     std::array<byte, ID_SIZE>       package_id   = std::to_array<byte>(package.id);
     std::array<byte, MAX_DATA_SIZE> package_data = std::to_array<byte>(package.data); //may be to use better <vector?>
     uint32_t crc = 0;   //can use to check incomplete file
@@ -22,23 +23,24 @@ DataProcessor::data_from_client DataProcessor::presence_file(DataProcessor::data
 
     for (int i = 0; i < rfiles.size(); i++){                //for(auto & rfile : rfiles){}
         if (rfiles[i].file_id == package_id){
-            //Add in old list;
-            //new_data.data = package_data;
-            //new_data.seq_number = package.seq_number;
-            //rfiles[i].quantity_package++;
             if (rfiles[i].Origin->push_in(package_data, package.seq_number)){
                 rfiles[i].quantity_package++;
             } //push data to seq_number cell
+            crc = DataProcessor::FileSystem::crc32c(0,
+                                                    reinterpret_cast<const char *>(package_data.data()),
+                                                    package_data.size());
 
-            if (rfiles[i].quantity_package == rfiles[i].seq_total) {  //Is file full? May be put in method?
+            std::cout << crc << std::endl;
+            if (rfiles[i].quantity_package == rfiles[i].seq_total && rfiles[i].file_id == package_id) {  //Is file full? May be put in method?
                 m_ready_file = true;                                  //may be to use struct for finish parameters (id, crc)
-                m_num_full_file = i;
                 File.name = rfiles[i].file_id;
-                DataProcessor::concantenate_packages(rfiles[i], File.data);
+                File.data = DataProcessor::concantenate_packages(rfiles[i], File.data);
                 DataProcessor::delete_file(i);
-                crc = DataProcessor::FileSystem::crc32c(0, reinterpret_cast<const char *>(File.data.data()), File.data.size());
+                crc = DataProcessor::FileSystem::crc32c(0,
+                                                        reinterpret_cast<const char *>(File.data.data()),
+                                                        File.data.size());
             }
-            package = DataProcessor::request_package(package, package.seq_number, crc);
+            package = DataProcessor::request_package(package,  rfiles[i].quantity_package, crc);
             return package;
         }
     }
@@ -72,10 +74,12 @@ DataProcessor::data_from_client DataProcessor::request_package(DataProcessor::da
     receive_package.seq_total = quantity_package;
     if (crc != 0) {
         //Big endian
+        m_crc = crc;
         receive_package.data[0] = crc >> 24;
         receive_package.data[1] = crc >> 16;
         receive_package.data[2] = crc >> 8;
         receive_package.data[3] = crc;
+        memset(receive_package.data + 4 * sizeof(byte), 0, sizeof(byte)*MAX_DATA_SIZE - 4);
     }
     else
         memset(receive_package.data, 0, sizeof(byte)*MAX_DATA_SIZE);
@@ -84,7 +88,8 @@ DataProcessor::data_from_client DataProcessor::request_package(DataProcessor::da
 
 std::vector<byte> DataProcessor::concantenate_packages(DataProcessor::data_properties file_arr, std::vector<byte> concantenated_data) {
     for (int i = 0; i < file_arr.seq_total; i++){
-        std::copy(file_arr.Origin->package[i].begin(), file_arr.Origin->package[i].begin(), concantenated_data.begin());
+        //File.data.resize(file_arr.seq_total * MAX_DATA_SIZE);
+        std::copy(file_arr.Origin->package[i].begin(), file_arr.Origin->package[i].end(), back_inserter(concantenated_data));
     }
     return concantenated_data;
 }
@@ -96,8 +101,16 @@ bool DataProcessor::write_file(){
 
 DataProcessor::FileSystem::FileSystem(std::array<byte, 8> file_name, std::vector<byte> data)
 {
-    file.open((char*)file_name.data());
-    file << data.data();
+    std::string str_file_name (std::begin(file_name), std::end(file_name));
+
+    std::ofstream output_file("str_file_name");
+    std::string chars = "\\";
+    for (char c: chars) {
+        str_file_name.erase(std::remove(str_file_name.begin(), str_file_name.end(), c), str_file_name.end());
+    }
+    std::ostream_iterator<byte> output_iterator(output_file, "");
+    std::copy(data.begin(), data.end(), output_iterator);
+    output_file.close();
 }
 
 DataProcessor::FileSystem::~FileSystem() {
@@ -117,32 +130,6 @@ uint32_t DataProcessor::FileSystem::crc32c(uint32_t crc, const char *buf, size_t
     return ~crc;
 }
 
-/*DataProcessor::PackageList::PackageList(data_node package_data){
-    node.push_front(package_data);
-}
-
-DataProcessor::PackageList::~PackageList(){
-    node.clear();
-}
-
-char* DataProcessor::PackageList::push_in_list(data_node package_data){
-    node.push_front(package_data);
-}
-
-char *DataProcessor::PackageList::sort_package_list(){
-    node.sort(&PackageList::my_compare);
-}
-
-void DataProcessor::PackageList::parce_packege(data_node& package_data){
-    package_data = node.front();
-}
-
-bool DataProcessor::PackageList::my_compare(DataProcessor::data_from_client data, const data_node& node2)
-{
-    return data.seq_number < node2.seq_number;//ask gosha!!
-}*/
-
-
 DataProcessor::PackageVector::PackageVector(uint32_t seq_total,  uint32_t seq_number, std::array<byte, MAX_DATA_SIZE> package_data) {
 
     package.resize(seq_total);
@@ -158,12 +145,18 @@ std::array<byte, MAX_DATA_SIZE> DataProcessor::PackageVector::get_package(uint32
 }
 
 bool DataProcessor::PackageVector::push_in(std::array<byte, MAX_DATA_SIZE> package_data, uint32_t seq_number) {
+    bool flag;
+
     if (seq_number > package.size()) //not used??
         package.resize(seq_number);
-    if (package[seq_number - 1] == package_data)
-        return false;
-    package[seq_number - 1] = package_data;
-    return true;
+
+    if (package[seq_number] != package_data)
+        flag = true;
+    else
+        flag = false;
+
+    package[seq_number] = package_data;
+    return flag;
 }
 
 

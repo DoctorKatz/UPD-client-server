@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="UDP_server"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="msvc8"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="UDP_server">
+				<Option output="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/UDP_server.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="D:\Program Files (x86)\VS\VC\Tools\MSVC\14.27.29110\ATLMFC\include"/>
+					<Add directory="D:\Program Files (x86)\VS\VC\Tools\MSVC\14.27.29110\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 UDP_server"/>
+					<CompileFile command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="UDP_server/fast">
+				<Option output="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/UDP_server.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="D:\Program Files (x86)\VS\VC\Tools\MSVC\14.27.29110\ATLMFC\include"/>
+					<Add directory="D:\Program Files (x86)\VS\VC\Tools\MSVC\14.27.29110\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 UDP_server/fast"/>
+					<CompileFile command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f F:\QRATE\Project_firmware\UPD-client-server\UDP_server\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/inc/interaction.h">
+			<Option target="UDP_server"/>
+		</Unit>
+		<Unit filename="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/inc/lib.h">
+			<Option target="UDP_server"/>
+		</Unit>
+		<Unit filename="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/inc/udp_server.h">
+			<Option target="UDP_server"/>
+		</Unit>
+		<Unit filename="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/src/interaction.cpp">
+			<Option target="UDP_server"/>
+		</Unit>
+		<Unit filename="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/src/lib.cpp">
+			<Option target="UDP_server"/>
+		</Unit>
+		<Unit filename="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/src/main.cpp">
+			<Option target="UDP_server"/>
+		</Unit>
+		<Unit filename="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/src/udp_server.cpp">
+			<Option target="UDP_server"/>
+		</Unit>
+		<Unit filename="F:/QRATE/Project_firmware/UPD-client-server/UDP_server/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

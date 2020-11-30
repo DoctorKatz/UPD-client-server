@@ -7,7 +7,7 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <list>
+#include <iterator>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -16,7 +16,10 @@
 #define POLY 0x82f63b78
 #define ACK 0
 #define PUT 1
-#define MAX_DATA_SIZE   40//1472
+
+#define MAX_DATA_SIZE   23//1472
+#define PACKAGE_SIZE    (MAX_DATA_SIZE + 17)
+
 #define ID_SIZE         8
 
 typedef unsigned char byte;
@@ -50,8 +53,7 @@ namespace udp_server {
         data_to_file_system File;
 
         //struct data_from_client package{};
-        struct data_node        data{};
-        static int              m_crc;
+        int                     m_crc;
         int                     m_num_full_file;
         bool                    m_ready_file;
         

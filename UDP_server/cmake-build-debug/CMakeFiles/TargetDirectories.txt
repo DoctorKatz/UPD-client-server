@@ -1,0 +1,3 @@
+F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/CMakeFiles/UDP_server.dir
+F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/CMakeFiles/edit_cache.dir
+F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/CMakeFiles/rebuild_cache.dir

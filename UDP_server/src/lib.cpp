@@ -2,7 +2,7 @@
 // Created by 79164 on 26.11.2020.
 //
 
-#include "lib.h"
+#include "../inc/lib.h"
 
 int io::kbhit(void)
 {

@@ -1,0 +1,97 @@
+The system is: Windows - 10.0.18363 - AMD64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: D:/Program Files (x86)/VS/VC/Tools/MSVC/14.27.29110/bin/Hostx86/x86/cl.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+Оптимизирующий компилятор Microsoft (R) C/C++ версии 19.27.29111 для x86
+(C) Корпорация Майкрософт (Microsoft Corporation).  Все права защищены.
+
+CMakeCCompilerId.c
+Microsoft (R) Incremental Linker Version 14.27.29111.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCCompilerId.exe 
+CMakeCCompilerId.obj 
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.exe"
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.obj"
+
+The C compiler identification is MSVC, found in "F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/CMakeFiles/3.17.3/CompilerIdC/CMakeCCompilerId.exe"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: D:/Program Files (x86)/VS/VC/Tools/MSVC/14.27.29110/bin/Hostx86/x86/cl.exe 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+Оптимизирующий компилятор Microsoft (R) C/C++ версии 19.27.29111 для x86
+(C) Корпорация Майкрософт (Microsoft Corporation).  Все права защищены.
+
+CMakeCXXCompilerId.cpp
+Microsoft (R) Incremental Linker Version 14.27.29111.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:CMakeCXXCompilerId.exe 
+CMakeCXXCompilerId.obj 
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.exe"
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.obj"
+
+The CXX compiler identification is MSVC, found in "F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/CMakeFiles/3.17.3/CompilerIdCXX/CMakeCXXCompilerId.exe"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):nmake /nologo cmTC_d8455\fast && 	"D:\Program Files (x86)\VS\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_d8455.dir\build.make /nologo -L                  CMakeFiles\cmTC_d8455.dir\build
+Building C object CMakeFiles/cmTC_d8455.dir/testCCompiler.c.obj
+	D:\PROGRA~2\VS\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\79164\AppData\Local\Temp\nm6D99.tmp
+testCCompiler.c
+Linking C executable cmTC_d8455.exe
+	"C:\Program Files\JetBrains\CLion 2020.2.1\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_d8455.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- D:\PROGRA~2\VS\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_d8455.dir\objects1.rsp @C:\Users\79164\AppData\Local\Temp\nm6DD9.tmp
+
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):nmake /nologo cmTC_ae233\fast && 	"D:\Program Files (x86)\VS\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_ae233.dir\build.make /nologo -L                  CMakeFiles\cmTC_ae233.dir\build
+Building C object CMakeFiles/cmTC_ae233.dir/CMakeCCompilerABI.c.obj
+	D:\PROGRA~2\VS\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\79164\AppData\Local\Temp\nm6F7E.tmp
+CMakeCCompilerABI.c
+Linking C executable cmTC_ae233.exe
+	"C:\Program Files\JetBrains\CLion 2020.2.1\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_ae233.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- D:\PROGRA~2\VS\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_ae233.dir\objects1.rsp @C:\Users\79164\AppData\Local\Temp\nm6FCD.tmp
+
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):nmake /nologo cmTC_a28dd\fast && 	"D:\Program Files (x86)\VS\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_a28dd.dir\build.make /nologo -L                  CMakeFiles\cmTC_a28dd.dir\build
+Building CXX object CMakeFiles/cmTC_a28dd.dir/testCXXCompiler.cxx.obj
+	D:\PROGRA~2\VS\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\79164\AppData\Local\Temp\nm7172.tmp
+testCXXCompiler.cxx
+Linking CXX executable cmTC_a28dd.exe
+	"C:\Program Files\JetBrains\CLion 2020.2.1\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_a28dd.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- D:\PROGRA~2\VS\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_a28dd.dir\objects1.rsp @C:\Users\79164\AppData\Local\Temp\nm71C1.tmp
+
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: F:/QRATE/Project_firmware/UPD-client-server/UDP_server/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):nmake /nologo cmTC_50d5e\fast && 	"D:\Program Files (x86)\VS\VC\Tools\MSVC\14.27.29110\bin\HostX86\x86\nmake.exe"  -f CMakeFiles\cmTC_50d5e.dir\build.make /nologo -L                  CMakeFiles\cmTC_50d5e.dir\build
+Building CXX object CMakeFiles/cmTC_50d5e.dir/CMakeCXXCompilerABI.cpp.obj
+	D:\PROGRA~2\VS\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @C:\Users\79164\AppData\Local\Temp\nm7366.tmp
+CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_50d5e.exe
+	"C:\Program Files\JetBrains\CLion 2020.2.1\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_50d5e.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- D:\PROGRA~2\VS\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\cmTC_50d5e.dir\objects1.rsp @C:\Users\79164\AppData\Local\Temp\nm73B5.tmp
+
+
+

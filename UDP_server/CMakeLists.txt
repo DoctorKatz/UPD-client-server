@@ -3,4 +3,4 @@ project(UDP_server)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(UDP_server main.cpp udp_server.h udp_server.cpp interaction.cpp interaction.h lib.cpp lib.h)
+add_executable(UDP_server src/main.cpp inc/udp_server.h src/udp_server.cpp src/interaction.cpp inc/interaction.h src/lib.cpp inc/lib.h)
